@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Loader2 } from "lucide-react"
-import Image from "next/image"
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import Image from "next/image";
 
 export function SplashScreen() {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     // Vérifier si l'écran de chargement a déjà été affiché
-    const hasShownSplash = sessionStorage.getItem("hasShownSplash")
+    const hasShownSplash = sessionStorage.getItem("hasShownSplash");
 
     if (hasShownSplash) {
-      setShow(false)
-      return
+      setShow(false);
+      return;
     }
 
     const timer = setTimeout(() => {
-      setShow(false)
+      setShow(false);
       // Marquer que l'écran de chargement a été affiché pour cette session
-      sessionStorage.setItem("hasShownSplash", "true")
-    }, 5000)
+      sessionStorage.setItem("hasShownSplash", "true");
+    }, 10000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white">
@@ -43,5 +43,5 @@ export function SplashScreen() {
         <p className="mt-2 text-gray-600 font-medium">Chargement...</p>
       </div>
     </div>
-  )
+  );
 }
